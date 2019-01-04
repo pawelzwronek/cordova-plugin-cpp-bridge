@@ -28,6 +28,7 @@ module.exports = function(context) {
         var platformPath = path.join(projectRoot, 'platforms', platform);
         var platformApi = platforms.getPlatformApi(platform, platformPath);
         var platformInfo = platformApi.getPlatformInfo();
+        platformInfo.locations.root = path.join(platformInfo.locations.root, 'app');
         var cfg = new ConfigParser(platformInfo.projectConfig.path);
 
         if (platform == 'ios' || platform == 'osx') {
@@ -350,13 +351,14 @@ var AndroidManager = function(context, platformInfo, cppDir, classDefine, header
     var cmakeListTemplate = fs.readFileSync(path.join(templateDir, 'CMakeLists.txt'), 'utf8');
 
     var allClassList = Object.keys(classDefine);
-    var destPluginDir = path.join(platformInfo.locations.root, 'src', javaPackage.join('/'));
+    var destPluginDirs = ['main', 'java', ...javaPackage];
+    var destPluginDir = path.join(platformInfo.locations.root, 'src', destPluginDirs.join('/'));
     var destCppDir = path.join(platformInfo.locations.root, 'cpp');
 
     this.setup = function() {
 
         var tmpPath = path.join(platformInfo.locations.root, 'src');
-        javaPackage.forEach(function(p) {
+        destPluginDirs.forEach(function(p) {
             tmpPath = path.join(tmpPath, p);
             if (!fs.existsSync(tmpPath)) {
                 fs.mkdirSync(tmpPath);
