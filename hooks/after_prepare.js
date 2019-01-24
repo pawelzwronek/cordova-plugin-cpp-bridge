@@ -454,6 +454,8 @@ var AndroidManager = function(context, platformInfo, cppDir, classDefine, header
                 releaseStringList.push(createContentWithTemplate(cpp_releaseStringTemplate, {'INDEX': i}));
             }
         }
+        toCppParamList.push("env");
+        toCppParamList.push("instance");
 
         var cppMethod = ['Java'].concat(javaPackage).concat([bridgeFileName, className + '0new']).join('_');
 
