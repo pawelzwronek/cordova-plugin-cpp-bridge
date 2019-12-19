@@ -6,8 +6,8 @@ module.exports = function(context) {
         return;
     }
 
-    var path              = context.requireCordovaModule('path'),
-        fs                = context.requireCordovaModule('fs'),
+    var path              = require('path'),
+        fs                = require('fs'),
         cordova_util      = context.requireCordovaModule('cordova-lib/src/cordova/util');
 
     var projectRoot = cordova_util.cdProjectRoot();

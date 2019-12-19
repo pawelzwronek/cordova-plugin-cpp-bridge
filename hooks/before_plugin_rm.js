@@ -7,8 +7,8 @@ module.exports = function(context) {
         return;
     }
 
-    var path              = context.requireCordovaModule('path'),
-        fs                = context.requireCordovaModule('fs'),
+    var path              = require('path'),
+        fs                = require('fs'),
         platforms         = context.requireCordovaModule('cordova-lib/src/platforms/platforms'),
         cordova_util      = context.requireCordovaModule('cordova-lib/src/cordova/util');
 
@@ -33,7 +33,7 @@ module.exports = function(context) {
 
 
     function removeFiles_ios_osx(platformInfo) {
-        var xcode = context.requireCordovaModule('xcode');
+        var xcode = require('xcode');
         var pbxproj = platformInfo.locations.pbxproj;
         var proj = xcode.project(pbxproj);
 

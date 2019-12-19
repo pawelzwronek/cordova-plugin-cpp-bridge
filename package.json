@@ -12,5 +12,9 @@
     "cordova-ios"
   ],
   "author": "tkyaji",
-  "license": "Apache version 2.0"
+  "license": "Apache version 2.0",
+  "dependencies": {
+    "shelljs": "^0.8.3",
+    "xcode": "^2.0.0"
+  }
 }

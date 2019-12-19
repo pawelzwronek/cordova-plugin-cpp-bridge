@@ -3,14 +3,10 @@ var pluginName = 'CordovaCppBridge';
 var bridgeFileName = 'CDVCppBridge';
 
 module.exports = function(context) {
-    var path              = context.requireCordovaModule('path'),
-        fs                = context.requireCordovaModule('fs'),
-        crypto            = context.requireCordovaModule('crypto'),
-        Q                 = context.requireCordovaModule('q'),
+    var path              = require('path'),
+        fs                = require('fs'),
         cordova_util      = context.requireCordovaModule('cordova-lib/src/cordova/util'),
         platforms         = context.requireCordovaModule('cordova-lib/src/platforms/platforms'),
-        Parser            = context.requireCordovaModule('cordova-lib/src/cordova/metadata/parser'),
-        ParserHelper      = context.requireCordovaModule('cordova-lib/src/cordova/metadata/parserhelper/ParserHelper'),
         ConfigParser      = context.requireCordovaModule('cordova-common').ConfigParser;
 
     var projectRoot = cordova_util.cdProjectRoot();
@@ -62,8 +58,8 @@ module.exports = function(context) {
 
 var IOS_OSXManager = function(context, platformInfo, cppDir, classDefine, headerFiles, sourceFiles) {
 
-    var path              = context.requireCordovaModule('path'),
-        fs                = context.requireCordovaModule('fs'),
+    var path              = require('path'),
+        fs                = require('fs'),
         cordova_util      = context.requireCordovaModule('cordova-lib/src/cordova/util');
 
     var projectRoot = cordova_util.cdProjectRoot();
@@ -323,10 +319,9 @@ var IOS_OSXManager = function(context, platformInfo, cppDir, classDefine, header
 
 var AndroidManager = function(context, platformInfo, cppDir, classDefine, headerFiles, sourceFiles) {
 
-    var path              = context.requireCordovaModule('path'),
-        fs                = context.requireCordovaModule('fs'),
-        shell             = context.requireCordovaModule('shelljs'),
-        properties_parser = context.requireCordovaModule('properties-parser'),
+    var path              = require('path'),
+        fs                = require('fs'),
+        shell             = require('shelljs'),
         cordova_util      = context.requireCordovaModule('cordova-lib/src/cordova/util');
 
     var javaPackage = ['com', 'tkyaji', 'cordova'];
@@ -791,8 +786,8 @@ var AndroidManager = function(context, platformInfo, cppDir, classDefine, header
 
 var JsManager = function(context, platformInfo, classDefine) {
 
-    var path              = context.requireCordovaModule('path'),
-        fs                = context.requireCordovaModule('fs'),
+    var path              = require('path'),
+        fs                = require('fs'),
         cordova_util      = context.requireCordovaModule('cordova-lib/src/cordova/util');
 
     var projectRoot = cordova_util.cdProjectRoot();
@@ -902,8 +897,8 @@ var JsManager = function(context, platformInfo, classDefine) {
 
 
 function copyCppFiles(context, cppDir, destCppDir, headerFiles, sourceFiles) {
-    var path              = context.requireCordovaModule('path'),
-        fs                = context.requireCordovaModule('fs');
+    var path              = require('path'),
+        fs                = require('fs');
 
     headerFiles.forEach(function(f) {
         fs.createReadStream(path.join(cppDir, f)).pipe(fs.createWriteStream(path.join(destCppDir, f)));
